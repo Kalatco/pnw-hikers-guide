@@ -2,7 +2,7 @@
 
 > A map-first hiking discovery experience for Washington State.
 
-[Explore the live experience](https://pnwtrailfinder.com)
+[Explore the live experience](https://pnwhikersguide.com/)
 
 ![PNW Hiker's Guide discover workspace](assets/pnw-hikers-guide-discover.png)
 
@@ -39,4 +39,4 @@ PNW Hiker's Guide is an active product prototype. This repository is a public pr
 
 ## Interested in the work?
 
-Open the [live experience](https://pnwtrailfinder.com) to explore the product.
+Open the [live experience](https://pnwhikersguide.com/) to explore the product.
