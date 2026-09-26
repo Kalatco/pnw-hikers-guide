@@ -29,9 +29,25 @@ The private implementation uses a modern TypeScript stack:
 
 - React and Vite for the client application
 - Mapbox for interactive mapping
-- Fastify for the API layer
-- PostgreSQL and Supabase for application data and authentication foundations
-- Structured trail catalogue data, recommendations, and weather integrations
+- Fastify running as a Node.js serverless API on Vercel
+- Supabase Auth and PostgreSQL for identity and application data
+- Weaviate for semantic trail retrieval
+- Gemini for embeddings and grounded hiking recommendations
+- LangSmith for AI workflow tracing and evaluation
+- Cloudflare for edge delivery, with R2-backed media delivery where configured
+- SMTP for transactional authentication email
+
+## Architecture
+
+The browser-facing application is hosted on Vercel and fronted by Cloudflare.
+The API keeps server-only integrations—data access, authentication, AI calls,
+and observability—outside the browser client.
+
+![PNW Hiker's Guide architecture: browser, Cloudflare, Vercel UI and API, Supabase, Weaviate, Gemini, National Weather Service, LangSmith, and Resend SMTP.](assets/pnw-hikers-guide-architecture.png)
+
+The diagram intentionally separates browser code from server-only
+integrations. The UI never handles database credentials, authentication
+secrets, or AI-provider credentials.
 
 ## Project status
 
