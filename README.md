@@ -6,6 +6,14 @@
 
 ![PNW Hiker's Guide discover workspace](assets/pnw-hikers-guide-discover.png)
 
+## Architecture
+
+![PNW Hiker's Guide architecture: browser, Cloudflare, Vercel UI and API, Supabase, Weaviate, Gemini, National Weather Service, LangSmith, and Resend SMTP.](assets/pnw-hikers-guide-architecture.png)
+
+## AI chat flow
+
+![PNW Hiker's Guide AI chat flow: validated requests load session context, interpret intent, either fetch a selected hike or search Weaviate, hydrate canonical Postgres details, optionally enrich with weather and trip reports, then generate a grounded response.](assets/pnw-hikers-guide-ai-chat-flow.png)
+
 ## The product
 
 PNW Hiker's Guide helps hikers move from *where should I go?* to a trail that fits their day. Its calm, desktop-first workspace brings trail discovery, location-aware search, planning context, and personal hiking history into one focused experience.
@@ -36,18 +44,6 @@ The private implementation uses a modern TypeScript stack:
 - LangSmith for AI workflow tracing and evaluation
 - Cloudflare for edge delivery, with R2-backed media delivery where configured
 - SMTP for transactional authentication email
-
-## Architecture
-
-The browser-facing application is hosted on Vercel and fronted by Cloudflare.
-The API keeps server-only integrations—data access, authentication, AI calls,
-and observability—outside the browser client.
-
-![PNW Hiker's Guide architecture: browser, Cloudflare, Vercel UI and API, Supabase, Weaviate, Gemini, National Weather Service, LangSmith, and Resend SMTP.](assets/pnw-hikers-guide-architecture.png)
-
-The diagram intentionally separates browser code from server-only
-integrations. The UI never handles database credentials, authentication
-secrets, or AI-provider credentials.
 
 ## Project status
 
