@@ -43,52 +43,11 @@ The browser-facing application is hosted on Vercel and fronted by Cloudflare.
 The API keeps server-only integrations—data access, authentication, AI calls,
 and observability—outside the browser client.
 
-```mermaid
-architecture-beta
-    group cloudflare(cloud)[Cloudflare]
-    group vercel(cloud)[Vercel]
-    group data(cloud)[Data and identity]
-    group ai(cloud)[AI and observability]
-    group email(cloud)[Email delivery]
+![PNW Hiker's Guide architecture: browser, Cloudflare, Vercel UI and API, Supabase, Weaviate, Gemini, National Weather Service, LangSmith, and Resend SMTP.](assets/pnw-hikers-guide-architecture.png)
 
-    service browser(internet)[Hiker browser]
-
-    service edge(internet)[DNS and edge proxy] in cloudflare
-    service cdn(cloud)[CDN] in cloudflare
-    service r2(disk)[R2 media origin] in cloudflare
-
-    service ui(server)[React UI] in vercel
-    service api(server)[Node.js Fastify API on Vercel Serverless] in vercel
-
-    service supabase(database)[Supabase Auth and PostgreSQL] in data
-    service weaviate(database)[Weaviate vector search] in data
-
-    service gemini(server)[Gemini API: embeddings and answers] in ai
-    service langsmith(cloud)[LangSmith AI traces] in ai
-
-    service smtp(cloud)[SMTP provider for transactional email] in email
-
-    browser:R --> L:edge
-    edge:R --> L:ui
-    ui:R <--> L:api
-
-    r2:B --> T:cdn
-    cdn:L --> R:browser
-
-    api:R <--> L:supabase
-    api:R <--> L:weaviate
-
-    api:B --> T:gemini
-    api:B --> T:langsmith
-
-    supabase:B --> T:smtp
-    smtp:L --> R:browser
-```
-
-The CDN/media route is active only where R2-backed assets are configured. The
-diagram intentionally shows third-party integrations as separate boundaries:
-the UI never directly handles database credentials, authentication secrets, or
-AI-provider credentials.
+The diagram intentionally separates browser code from server-only
+integrations. The UI never handles database credentials, authentication
+secrets, or AI-provider credentials.
 
 ## Project status
 
