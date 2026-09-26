@@ -6,7 +6,7 @@
 
 ![PNW Hiker's Guide discover workspace](assets/pnw-hikers-guide-discover.png)
 
-## Architecture
+## High Level Architecture
 
 ![PNW Hiker's Guide architecture: browser, Cloudflare, Vercel UI and API, Supabase, Weaviate, Gemini, National Weather Service, LangSmith, and Resend SMTP.](assets/pnw-hikers-guide-architecture.png)
 
